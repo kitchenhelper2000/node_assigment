@@ -12,19 +12,19 @@ app.get('/',(request,response)=>{
     response.status(200).json({message:'Hello Welcome to my todo API'});
 });
 
-// importing todoController
-const usercontroller = require('./Controller/usercontroller');
+// importing usercontroller
+const userController = require('./Controller/userController');
 
-app.post('/user',usercontroller.addUser);
-app.get('/user',usercontroller.getAllUser);
-app.patch('/user/:userId',usercontroller.updateUserById);
-app.delete('/user/:userId',usercontroller.deleteUserById);
-app.get('/user/:userId',usercontroller.getUserById);
+app.post('/user',userController.addUser);
+app.get('/user',userController.getAllUser);
+app.patch('/user/:userId',userController.updateUserById);
+app.delete('/user/:userId',userController.deleteUserById);
+app.get('/user/:userId',userController.getUserById);
 
 
-// listening to request on localhost port 8020
-app.listen(1003,() => {
-    console.log('Welcome to our world');
+// listening to request on localhost port 1003
+app.listen(PORT,() => {
+    console.log('Welcome to our world',PORT);
     // connecting the database
     mongoose.connect(process.env.DB_URL)
     .then(function(){
@@ -32,6 +32,5 @@ app.listen(1003,() => {
     })
     .catch(function (error){
         console.log(`Database is not connected ${error}`);
-        
     });
 });
